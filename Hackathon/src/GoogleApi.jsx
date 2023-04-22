@@ -17,10 +17,16 @@ export default function GoogleApi() {
 }
 
 function GoogleMapComponent() {
-  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+  const center = useMemo(() => ({ lat: 37.325954, lng: -120.499992}), []);
 
   return (
-    <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
+    <GoogleMap zoom={12} center={center} mapContainerClassName="map-container"
+      onClick={(e)=>{
+        console.log("lat", e.latLng.lat())
+        console.log("long", e.latLng.lng())
+      }}
+    
+    >
       <Marker position={center} />
     </GoogleMap>
   );
