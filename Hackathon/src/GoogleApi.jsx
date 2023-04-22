@@ -41,6 +41,12 @@ function GoogleMapComponent() {
     },
   };
 
+  function checkData(e){
+    
+
+  }
+
+  
   return (
     <GoogleMap
       zoom={12}
