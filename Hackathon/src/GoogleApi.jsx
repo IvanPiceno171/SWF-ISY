@@ -19,11 +19,18 @@ export default function GoogleApi() {
 function GoogleMapComponent() {
   const center = useMemo(() => ({ lat: 37.325954, lng: -120.499992}), []);
 
+  function checkData(e){
+    
+
+  }
+
+  
   return (
     <GoogleMap zoom={12} center={center} mapContainerClassName="map-container"
       onClick={(e)=>{
-        console.log("lat", e.latLng.lat())
-        console.log("long", e.latLng.lng())
+        // console.log("lat", e.latLng.lat())
+        // console.log("long", e.latLng.lng())
+        checkData(e);
       }}
     
     >
