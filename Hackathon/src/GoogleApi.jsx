@@ -1,5 +1,10 @@
 import React, { useMemo, useCallback, useState } from "react";
-import { GoogleMap, useLoadScript, Marker, Circle } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  Circle,
+} from "@react-google-maps/api";
 import "./App.css";
 import stageHeightSlopes from "./stageHeightSlopes";
 import precipitationSlopes from "./precipitationSlopes";
@@ -60,7 +65,7 @@ function GoogleMapComponent() {
 
   const [showText, setShowText] = useState(false);
   const [coords, setCoords] = useState({ lat: null, lng: null });
-  
+
   const circleOptions = {
     strokeColor: "#FF0000",
     strokeOpacity: 0.8,
@@ -68,23 +73,23 @@ function GoogleMapComponent() {
     fillOpacity: 0.3,
     fillColor: "#FF0000",
   };
-  
+
   const circle1 = {
     center: { lat: 37.3105, lng: -120.46965 },
     radius: 700, // in meters
   };
 
   const circle2 = {
-    center: { lat: 37.3125, lng: -120.48250 },
+    center: { lat: 37.3125, lng: -120.4825 },
     radius: 700, // in meters
   };
 
-  const [showOverlay, setShowOverlay]= useState(false)
-const showFlood = ()=>{
-  setShowOverlay((bool)=>!bool)
-}
+  const [showOverlay, setShowOverlay] = useState(false);
+  const showFlood = () => {
+    setShowOverlay((bool) => !bool);
+  };
 
-const handleMapClick = (e) => {
+  const handleMapClick = (e) => {
     setShowText(true);
     setCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     console.log(showText);
@@ -117,25 +122,26 @@ const handleMapClick = (e) => {
         onLoad={onMapLoad}
       >
         <Marker position={center} />
- {showOverlay &&
-      <>
-      
-       <Circle
-       key="circle1"
-       center={circle1.center}
-       radius={circle1.radius}
-       options={circleOptions}
-       />
-       <Circle
-      key="circle2"
-      center={circle2.center}
-      radius={circle2.radius}
-      options={circleOptions}
-      />
-      </>
-    }
-</GoogleMap>
-    <button className="flood-btn"  onClick={showFlood}>Show Possible Flooded Area</button>
+        {showOverlay && (
+          <>
+            <Circle
+              key="circle1"
+              center={circle1.center}
+              radius={circle1.radius}
+              options={circleOptions}
+            />
+            <Circle
+              key="circle2"
+              center={circle2.center}
+              radius={circle2.radius}
+              options={circleOptions}
+            />
+          </>
+        )}
+      </GoogleMap>
+      <button className="flood-btn" onClick={showFlood}>
+        Show Possible Flooded Area
+      </button>
       {showText && (
         <>
           <p>
@@ -150,7 +156,7 @@ const handleMapClick = (e) => {
 
           <div className="data-wrapper">
             <p className="slope-description">
-              First we calculated the slopes of the Stage Height and Precipition
+              Here are the calculated slopes of the Stage Height and Precipition
               between 1-Dec-22 to 23-Feb-23
             </p>
             <div className="flex-container">
@@ -177,7 +183,7 @@ const handleMapClick = (e) => {
             </div>
           </div>
 
-          <div className="pcc-wrapper">
+          {/* <div className="pcc-wrapper">
             <p className="pcc-description">
               Then we analyzed the slope data using the{" "}
               <span className="highlight">
@@ -192,14 +198,14 @@ const handleMapClick = (e) => {
             <img src="public/pcc.png" className="image-pcc" />
             <p className="pcc-description">
               When we input the data into PCC we get a coefficient of:{" "}
-              <span className="highlight">0.9995</span>
+              <span className="highlight">0.445</span>
               <br />
               <br />
               This indicates that there is a{" "}
               <span className="highlight">strong correlation</span> between the
               slopes of the Stage Height and Precipitation.
             </p>
-          </div>
+          </div> */}
         </>
       )}
     </>
