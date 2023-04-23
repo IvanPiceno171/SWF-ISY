@@ -12,8 +12,12 @@ import java.util.Scanner;
 public class stageHeightSlopes {
 	
 	//set up ArrayLists
+		//List is used to store data straight from the Microsoft Excel
 	private static ArrayList<waterHackClass> list = new ArrayList<waterHackClass>();
+		//coordinateList is used to store coordinate points for slopes
 	private static ArrayList<point> coordinateList = new ArrayList<point>();
+		//slope list is used to store slopes
+	private static ArrayList<integer> slopeList = new ArrayList<integer>();
 
 	public static void main(String[] args) {
 		//read all data
@@ -42,6 +46,16 @@ public class stageHeightSlopes {
 			}		
 		}
 		findSlope();
+		int floodCounter = 0;
+		for (int i = 1; i < slopeList.size()-1; i++) {
+			if (slopeList.get(i-1).getSlope()-slopeList.get(i).getSlope() > 4) {
+				floodCounter ++;
+			}
+			if (floodCounter > 1) {
+				System.out.println("Get ready for a flood! Peak spike at: " + list.get(slopeList.get(i).getDay()).getDate());
+				floodCounter = 0;
+			}
+		}
 	}
 
 	//function to find the slope of all data
@@ -55,8 +69,8 @@ public class stageHeightSlopes {
 		double highPointX = list.get(0).getStageHeight();
 		double highPointY = 0;
 		double slope;
-
 		for (i = 1 ; i < list.size()-1; i++) {
+			integer storage = new integer();
 			double stageHeight = list.get(i).getStageHeight();
 			double prevStageHeight = list.get(i-1).getStageHeight();
 
@@ -73,7 +87,10 @@ public class stageHeightSlopes {
 			coordinateTracker++;
 			//Slope formula using points
 			slope = (lowPointX-highPointX)/(lowPointY-highPointY);
-			System.out.println(slope);
+			//Storing slopes into ArrayList
+			storage.putSlope(slope,i);
+			slopeList.add(storage);
+			//System.out.println(slope);
 
 			//finds a corner, then keeps track of it
 			while(prevStageHeight<=stageHeight && i < list.size()-1){
@@ -81,6 +98,7 @@ public class stageHeightSlopes {
 				stageHeight = list.get(i).getStageHeight();
 				prevStageHeight = list.get(i-1).getStageHeight();
 			}
+			storage = new integer();
 			coordinate.addPoints(prevStageHeight,i);
 			coordinateList.add(coordinate);
 			lowPointX = coordinateList.get(coordinateTracker).getX();
@@ -88,7 +106,10 @@ public class stageHeightSlopes {
 			coordinateTracker++;
 			//Slope formula using points
 			slope = (highPointX-lowPointX)/(highPointY-lowPointY);
-			System.out.println(slope);
+			//Storing slopes into ArrayList
+			storage.putSlope(slope,i);
+			slopeList.add(storage);
+			//System.out.println(slope);
 		}
 		//Tracks the last point down
 		coordinate.addPoints(list.get(i-1).getStageHeight(),i);
@@ -98,8 +119,11 @@ public class stageHeightSlopes {
 		coordinateTracker++;
 		//Slope formula using points
 		slope = (highPointX-lowPointX)/(highPointY-lowPointY);
-		System.out.println(slope);
-
+		//Storing slopes into ArrayList
+		integer storage = new integer();
+		storage.putSlope(slope,i);
+		slopeList.add(storage);
+		//System.out.println(slope);
 	}
 }
 
