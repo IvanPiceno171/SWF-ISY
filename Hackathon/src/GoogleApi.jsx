@@ -104,12 +104,8 @@ function GoogleMapComponent() {
           <p className="info">
             The risk of a future flood from Bear Creek to your location is:
           </p>
-          <p className="risk">Low</p>
-          <p className="why">
-            The risk of a future flood from Bear Creek to your location is low
-            because
-          </p>
-          <p className="info2">Here's why we think the risk is low:</p>
+          <p className="risk">Moderate</p>
+          <p className="info2">Here's why we think the risk is moderate:</p>
 
           <div className="data-wrapper">
             <p className="slope-description">
