@@ -19,7 +19,7 @@ public class precipitationSlopes {
 		//read all data
 		Scanner input = null;
 		try{ 
-			input = new Scanner(new File("BearCreek_McKee_flow_eclipse.csv"));
+			input = new Scanner(new File("BearCreek_precipitation.csv"));
 		}catch(FileNotFoundException e){ 
 			e.printStackTrace();
 		}
