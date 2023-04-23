@@ -25,7 +25,7 @@ body {
   5. Improve text rendering
 */
 body {
-  line-height: 1.5;
+  line-height: 1.2;
   -webkit-font-smoothing: antialiased;
 }
 /*
@@ -90,10 +90,97 @@ h6 {
 .info {
   color: rgb(148 163 184);
   font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.info2 {
+  color: rgb(148 163 184);
+  font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.risk {
+  font-size: 3rem;
+  color: rgb(101 163 13); /* lime-600 */
+  font-weight: 600;
+}
+
+.why {
+  background-color: rgb(30 41 59); /* slate-800 */
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 3rem;
 }
 
 .map-container {
   width: 500px;
   height: 500px;
+}
+
+.data-wrapper {
+  background-color: rgb(30 41 59); /* slate-800 */
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.code-box {
+  background-color: rgb(51 65 85); /* slate-700 */
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  width: calc(50% - 0.5rem);
+}
+
+.code-box:hover {
+  background-color: rgb(71 85 105); /* slate-600 */
+  cursor: pointer;
+}
+
+.img-wrapper {
+  display: flex;
+}
+
+.slope-images {
+  width: 500px;
+  margin: 0 2rem;
+}
+
+.slope-description {
+  text-align: center;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.pcc-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(30 41 59); /* slate-800 */
+  margin: 1rem 0;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.pcc-description {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  max-width: 75ch;
+}
+
+.image-pcc {
+  margin: 1rem 0;
+  width: 500px;
+}
+
+.highlight {
+  font-weight: 700;
+  color: rgb(167 243 208);
 }
