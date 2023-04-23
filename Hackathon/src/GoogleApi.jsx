@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import "./App.css";
 
 export default function GoogleApi() {
   const { isLoaded } = useLoadScript({
@@ -64,8 +65,6 @@ function GoogleMapComponent() {
     console.log(showText);
   };
 
-  function checkData(e) {}
-
   return (
     <>
       <GoogleMap
@@ -85,9 +84,16 @@ function GoogleMapComponent() {
         <Marker position={center} />
       </GoogleMap>
       {showText && (
-        <p>
-          Latitude: {coords.lat.toFixed(4)}, Longitude: {coords.lng.toFixed(4)}
-        </p>
+        <>
+          <p>
+            Latitude: {coords.lat.toFixed(4)}, Longitude:{" "}
+            {coords.lng.toFixed(4)}
+          </p>
+          <p className="info">
+            The chance of a flood occuring at your current location is:{" "}
+          </p>
+          <p className="info">Here's how we got this number:</p>
+        </>
       )}
     </>
   );

@@ -1,14 +1,16 @@
 import GoogleApi from "./GoogleApi.jsx";
 import "./App.css";
-// import Info from "./components/Info/info.jsx";
 
 function App() {
   return (
-    <>
-      <h1>The Flood Risk Helper</h1>
+    <div className="wrapper">
+      <h1 className="title">The Flood Risk Helper</h1>
+      <p className="description">
+        Click on a location near Bear Creek to understand the risk of a flood
+        occuring.
+      </p>
       <GoogleApi></GoogleApi>
-      {/* <Info /> */}
-    </>
+    </div>
   );
 }
 
