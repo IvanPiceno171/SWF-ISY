@@ -35,7 +35,14 @@ function GoogleMapComponent() {
     map.fitBounds(bounds);
   }, []);
 
-  const options = {
+  // USE STATE HOOK
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [code1Expanded, setCode1Expanded] = useState(false);
+  const [code2Expanded, setCode2Expanded] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [coords, setCoords] = useState({ lat: null, lng: null });
+
+  const options = { // GOOGLE MAPS OPTION PROPERTY
     minZoom: 0,
     maxZoom: 15,
     restriction: {
@@ -63,8 +70,7 @@ function GoogleMapComponent() {
     ],
   };
 
-  const [showText, setShowText] = useState(false);
-  const [coords, setCoords] = useState({ lat: null, lng: null });
+
 
   const circleOptions = {
     strokeColor: "#FF0000",
@@ -84,7 +90,8 @@ function GoogleMapComponent() {
     radius: 700, // in meters
   };
 
-  const [showOverlay, setShowOverlay] = useState(false);
+
+  // ON CLICK FUNCTIONS
   const showFlood = () => {
     setShowOverlay((bool) => !bool);
   };
@@ -95,8 +102,6 @@ function GoogleMapComponent() {
     console.log(showText);
   };
 
-  const [code1Expanded, setCode1Expanded] = useState(false);
-  const [code2Expanded, setCode2Expanded] = useState(false);
 
   const toggleCode1 = () => {
     setCode1Expanded(!code1Expanded);
@@ -122,7 +127,8 @@ function GoogleMapComponent() {
         onLoad={onMapLoad}
       >
         <Marker position={center} />
-        {showOverlay && (
+
+        {showOverlay && ( 
           <>
             <Circle
               key="circle1"
@@ -139,6 +145,7 @@ function GoogleMapComponent() {
           </>
         )}
       </GoogleMap>
+      
       <button className="flood-btn" onClick={showFlood}>
         Show Possible Flooded Area
       </button>
