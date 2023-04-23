@@ -185,3 +185,14 @@ h6 {
   font-weight: 700;
   color: rgb(167 243 208);
 }
+
+.flood-btn{
+  background-color: rgb(51 65 85); /* slate-700 */
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  color: white;
+  border: 5px groove white;
+  margin: 30px 0px 20px 0px;
+}

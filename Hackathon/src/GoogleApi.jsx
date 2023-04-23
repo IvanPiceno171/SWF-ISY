@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback, useState } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker, Circle } from "@react-google-maps/api";
 import "./App.css";
 import stageHeightSlopes from "./stageHeightSlopes";
 import precipitationSlopes from "./precipitationSlopes";
@@ -60,8 +60,31 @@ function GoogleMapComponent() {
 
   const [showText, setShowText] = useState(false);
   const [coords, setCoords] = useState({ lat: null, lng: null });
+  
+  const circleOptions = {
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillOpacity: 0.3,
+    fillColor: "#FF0000",
+  };
+  
+  const circle1 = {
+    center: { lat: 37.3105, lng: -120.46965 },
+    radius: 700, // in meters
+  };
 
-  const handleMapClick = (e) => {
+  const circle2 = {
+    center: { lat: 37.3125, lng: -120.48250 },
+    radius: 700, // in meters
+  };
+
+  const [showOverlay, setShowOverlay]= useState(false)
+const showFlood = ()=>{
+  setShowOverlay((bool)=>!bool)
+}
+
+const handleMapClick = (e) => {
     setShowText(true);
     setCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     console.log(showText);
@@ -94,7 +117,25 @@ function GoogleMapComponent() {
         onLoad={onMapLoad}
       >
         <Marker position={center} />
-      </GoogleMap>
+ {showOverlay &&
+      <>
+      
+       <Circle
+       key="circle1"
+       center={circle1.center}
+       radius={circle1.radius}
+       options={circleOptions}
+       />
+       <Circle
+      key="circle2"
+      center={circle2.center}
+      radius={circle2.radius}
+      options={circleOptions}
+      />
+      </>
+    }
+</GoogleMap>
+    <button className="flood-btn"  onClick={showFlood}>Show Possible Flooded Area</button>
       {showText && (
         <>
           <p>
